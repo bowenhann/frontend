@@ -89,38 +89,38 @@ function generateComponentString(node, query) {
 	}>${childrenString}</${componentName}>`
 }
 
-function renderComponents1(componentString) {
-	const regex = /<(\w+)([^>]*)>(.*?)<\/\1>/
-	const match = regex.exec(componentString)
+// function renderComponents1(componentString) {
+// 	const regex = /<(\w+)([^>]*)>(.*?)<\/\1>/
+// 	const match = regex.exec(componentString)
 
-	if (match) {
-		const [, componentName, propsString, children] = match
-		const fullComponentName = Object.keys(componentNameMap).find(
-			(key) => componentNameMap[key] === componentName
-		)
-		const Component = componentMap[fullComponentName]
+// 	if (match) {
+// 		const [, componentName, propsString, children] = match
+// 		const fullComponentName = Object.keys(componentNameMap).find(
+// 			(key) => componentNameMap[key] === componentName
+// 		)
+// 		const Component = componentMap[fullComponentName]
 
-		if (Component) {
-			const props = {}
-			const propsRegex = /(\w+)=(?:{([^}]*)}|"([^"]*)")/g
-			let propMatch
-			while ((propMatch = propsRegex.exec(propsString))) {
-				const [, key, objectValue, stringValue] = propMatch
-				props[key] = objectValue ? JSON.parse(objectValue) : stringValue
-			}
+// 		if (Component) {
+// 			const props = {}
+// 			const propsRegex = /(\w+)=(?:{([^}]*)}|"([^"]*)")/g
+// 			let propMatch
+// 			while ((propMatch = propsRegex.exec(propsString))) {
+// 				const [, key, objectValue, stringValue] = propMatch
+// 				props[key] = objectValue ? JSON.parse(objectValue) : stringValue
+// 			}
 
-			const RenderedComponent = (nodeProps) => (
-				<Component {...props} {...nodeProps}>
-					{children}
-				</Component>
-			)
-			RenderedComponent.displayName = `Rendered${componentName}`
-			return RenderedComponent
-		}
-	}
+// 			const RenderedComponent = (nodeProps) => (
+// 				<Component {...props} {...nodeProps}>
+// 					{children}
+// 				</Component>
+// 			)
+// 			RenderedComponent.displayName = `Rendered${componentName}`
+// 			return RenderedComponent
+// 		}
+// 	}
 
-	return () => null
-}
+// 	return () => null
+// }
 
 function generateRandomBgColor() {
 	const colors = ['red', 'blue', 'green', 'yellow']
@@ -134,32 +134,32 @@ function generateRandomBgColor() {
 
 const UnrelatedButton = () => <NodeButton>Test1</NodeButton>
 const createCraftElement = (component) => {
-	if (typeof component !== 'object' || component === null) {
-		return component
-	}
+  if (typeof component !== 'object' || component === null) {
+    return component;
+  }
 
-	const { type, props } = component
-	const Component = componentMap[type] || type
+  const { type, props } = component;
+  const Component = componentMap[type] || type;
 
-	if (!Component) {
-		console.error(`Component type "${type}" not found in componentMap`)
-		return null
-	}
+  if (!Component) {
+    console.error(`Component type "${type}" not found in componentMap`);
+    return null;
+  }
 
-	const craftProps = { ...props }
+  const craftProps = { ...props };
 
-	if (props && props.children) {
-		craftProps.children = Array.isArray(props.children)
-			? props.children.map(createCraftElement)
-			: createCraftElement(props.children)
-	}
+  if (props && props.children) {
+    craftProps.children = Array.isArray(props.children)
+      ? props.children.map(createCraftElement)
+      : createCraftElement(props.children);
+  }
 
-	return (
-		<Element canvas is={Component} {...craftProps}>
-			{craftProps.children}
-		</Element>
-	)
-}
+  return (
+    <Element canvas is={Component} {...craftProps}>
+      {craftProps.children}
+    </Element>
+  );
+};
 
 export const ControlPanel = () => {
 	const { active, related, query, actions } = useEditor((state, query) => ({

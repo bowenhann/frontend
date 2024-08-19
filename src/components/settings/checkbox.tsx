@@ -1,3 +1,4 @@
+// @/components/settings/checkbox.tsx
 import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '@/components/ui/input';
@@ -11,29 +12,21 @@ export const CheckboxSettings = () => {
 
   return (
     <div className="space-y-4">
-      <div>
-        <Label htmlFor="label">Label</Label>
+      <div className="space-y-2">
+        <Label htmlFor="label">Checkbox Label</Label>
         <Input
           id="label"
           value={props.label || ''}
-          onChange={(e) => setProp((props: any) => (props.label = e.target.value))}
-        />
-      </div>
-      <div>
-        <Label htmlFor="id">ID</Label>
-        <Input
-          id="id"
-          value={props.id || ''}
-          onChange={(e) => setProp((props: any) => (props.id = e.target.value))}
+          onChange={(e) => setProp((props) => (props.label = e.target.value))}
         />
       </div>
       <div className="flex items-center space-x-2">
         <Switch
-          id="disabled"
-          checked={props.disabled || false}
-          onCheckedChange={(checked) => setProp((props: any) => (props.disabled = checked))}
+          id="checked"
+          checked={props.checked}
+          onCheckedChange={(checked) => setProp((props) => (props.checked = checked))}
         />
-        <Label htmlFor="disabled">Disabled</Label>
+        <Label htmlFor="checked">Initial Checked State</Label>
       </div>
     </div>
   );

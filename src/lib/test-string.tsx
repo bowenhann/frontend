@@ -8,14 +8,17 @@ export const componentStrings = [
   // Header
   `
   <ResizableComponent width="100%" height="10%" className="bg-gradient-to-br from-purple-500 via-pink-500 to-red-500">
-    <NodeCard className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
-      <NodeCardHeader className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 p-4 flex items-center">
-        <div>
-          <NodeCardTitle className="text-2xl font-bold text-white">Complex Component Demo</NodeCardTitle>
-          <NodeCardDescription className="text-sm text-blue-100">Showcasing various nested components</NodeCardDescription>
-        </div>
-      </NodeCardHeader>c
-    </NodeCard>
+
+    <NodeCard className="w-full">
+						<NodeCardHeader>
+							<NodeCardTitle>Card Title</NodeCardTitle>
+							<NodeCardDescription>Card Description</NodeCardDescription>
+						</NodeCardHeader>
+						<NodeCardContent></NodeCardContent>
+						<NodeCardFooter>
+							<NodeButton className="w-full">Footer button</NodeButton>
+						</NodeCardFooter>
+					</NodeCard>
   </ResizableComponent>
   `,
 
@@ -25,9 +28,9 @@ export const componentStrings = [
     <NodeCard className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
       <NodeCardContent className="h-full p-6">
         <NodeAccordion type="single" collapsible className="h-full">
-          <NodeAccordion.Item value="item-1" className="h-full">
-            <NodeAccordion.Trigger>Interactive Elements</NodeAccordion.Trigger>
-            <NodeAccordion.Content className="h-full">
+          <NodeAccordionItem value="item-1" className="h-full">
+            <NodeAccordionTrigger>Interactive Elements</NodeAccordionTrigger>
+            <NodeAccordionContent className="h-full">
               <div className="space-y-4 h-full flex flex-col justify-center">
                 <NodeButton className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-md hover:from-green-500 hover:to-blue-600 transition-all duration-300">
                   Gradient Button
@@ -35,8 +38,8 @@ export const componentStrings = [
                 <NodeCheckbox label="Check me!" className="text-indigo-600" />
     <Input id="input" type={type} placeholder={placeholder} {...props} />
               </div>
-            </NodeAccordion.Content>
-          </NodeAccordion.Item>
+            </NodeAccordionContent>
+          </NodeAccordionItem>
         </NodeAccordion>
       </NodeCardContent>
     </NodeCard>
@@ -49,21 +52,21 @@ export const componentStrings = [
     <NodeCard className="h-full bg-white rounded-lg shadow-lg overflow-hidden">
       <NodeCardContent className="h-full p-6">
         <NodeAccordion type="single" collapsible className="h-full">
-          <NodeAccordion.Item value="item-2" className="h-full">
-            <NodeAccordion.Trigger>Visual Elements</NodeAccordion.Trigger>
-            <NodeAccordion.Content className="h-full">
+          <NodeAccordionItem value="item-2" className="h-full">
+            <NodeAccordionTrigger>Visual Elements</NodeAccordionTrigger>
+            <NodeAccordionContent className="h-full">
               <div className="space-y-4 h-full flex flex-col justify-center">
                 <NodeAvatar src="https://example.com/avatar.jpg" alt="User Avatar" className="w-16 h-16 rounded-full border-4 border-gradient-to-r from-yellow-400 to-orange-500" />
-                <NodeBadge variant="outline" className="bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+                <NodeBadge variant="outline" className="bg-gradient-to-r from-green-400 to-blue-500 text-white">
                   Premium User
                 </NodeBadge>
-                <NodeAlert variant="info" className="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500">
+                <NodeAlert variant="info" className="bg-gradient-to-r from-green-100 to-blue-500">
                   <NodeAlertTitle>Info</NodeAlertTitle>
                   <NodeAlertDescription>This is an informational alert with a gradient background.</NodeAlertDescription>
                 </NodeAlert>
               </div>
-            </NodeAccordion.Content>
-          </NodeAccordion.Item>
+            </NodeAccordionContent>
+          </NodeAccordionItem>
         </NodeAccordion>
       </NodeCardContent>
     </NodeCard>
@@ -79,9 +82,9 @@ export const componentStrings = [
           <NodeCollapsible.Trigger className="w-full p-4 text-left font-medium bg-gradient-to-r from-gray-50 to-gray-100">
             Toggle Calendar
           </NodeCollapsible.Trigger>
-          <NodeCollapsible.Content className="p-4 h-[calc(100%-3rem)]">
+          <NodeCollapsibleContent className="p-4 h-[calc(100%-3rem)]">
             <NodeCalendar className="h-full bg-white shadow-md rounded-lg" />
-          </NodeCollapsible.Content>
+          </NodeCollapsibleContent>
         </NodeCollapsible>
       </NodeCardContent>
     </NodeCard>

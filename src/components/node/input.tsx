@@ -1,32 +1,27 @@
+// @/components/node/input.tsx
 import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { InputSettings } from '@/components/settings/input';
 
-export const NodeInput = ({
-  label = 'Label',
-  placeholder = 'Type here...',
-  type = 'text',
-  ...props
-}) => {
+export const NodeInput = ({ ...props }) => {
   const { connectors: { connect, drag } } = useNode();
-
   return (
-    <div ref={(ref) => connect(drag(ref)) as any} className="space-y-2">
-      <Label htmlFor="input">{label}</Label>
-      <Input id="input" type={type} placeholder={placeholder} {...props} />
-    </div>
+    <Input 
+      {...props} 
+      ref={(ref) => ref && connect(drag(ref)) as any}
+    />
   );
 };
 
 NodeInput.craft = {
   displayName: 'Input',
   props: {
-    label: 'Label',
-    placeholder: 'Type here...',
     type: 'text',
+    placeholder: 'Enter text...',
+    disabled: false,
   },
   related: {
-    toolbar: () => { /* ... */ },
+    toolbar: InputSettings,
   },
 };

@@ -18,7 +18,7 @@ import {
 } from '@/components/node/accordion'
 import { NodeAvatar } from '@/components/node/avatar'
 import { NodeAlertDialog } from '@/components/node/alert-dialog'
-import { NodeAlert } from '@/components/node/alert'
+import { NodeAlert, NodeAlertTitle, NodeAlertDescription } from '@/components/node/alert'
 import { NodeAspectRatio } from '@/components/node/aspect-ratio'
 import { DynamicContent } from '@/components/dynamicContent'
 import { NodeBadge } from '@/components/node/badge'
@@ -65,6 +65,7 @@ export const componentMap = {
 	NodeAvatar,
 	NodeAlertDialog,
 	NodeAlert,
+	NodeAlertTitle, NodeAlertDescription,
 	NodeBadge,
 	NodeCollapsible,
 	NodeCheckbox,
@@ -106,6 +107,8 @@ export const componentNameMap = {
 	Avatar: 'NodeAvatar',
 	AlertDialog: 'NodeAlertDialog',
 	Alert: 'NodeAlert',
+	AlertTitle: 'NodeAlertTitle',
+	AlertDescription: 'NodeAlertDescription',
 	Checkbox: 'NodeCheckbox',
 	Collapsible: 'NodeCollapsible',
 	Command: 'NodeCommand',

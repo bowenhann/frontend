@@ -49,8 +49,8 @@ import {
 } from '@/components/ui/alert-dialog'
 import { ResizableComponent } from '../resizableComponent'
 import { Element } from '@craftjs/core'
-import { NodeAlert } from '../node/alert'
 import { Alert, AlertTitle, AlertDescription } from '../ui/alert'
+import { NodeAlert, NodeAlertTitle, NodeAlertDescription } from '../node/alert'
 import { NodeAspectRatio } from './aspect-ratio'
 import { AspectRatio } from '../ui/aspect-ratio'
 import { Badge } from '../ui/badge'
@@ -309,62 +309,57 @@ export const componentsMap: Components[] = [
 		]
 	},
 	{
-		name: 'Accordion',
-		items: [
-			{
-				name: 'Accordion',
-				demo: (
-					<Accordion type="multiple" className="w-full max-w-md mx-auto">
-						<AccordionItem value="item-1" className="border-b">
-							<AccordionTrigger className="text-lg font-semibold">
-								Is it accessible?
-							</AccordionTrigger>
-							<AccordionContent className="text-gray-600">
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-2" className="border-b">
-							<AccordionTrigger className="text-lg font-semibold">
-								Is it styled?
-							</AccordionTrigger>
-							<AccordionContent className="text-gray-600">
-								Yes. It comes with default styles that matches the other
-								components aesthetic.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-3">
-							<AccordionTrigger className="text-lg font-semibold">
-								Is it animated?
-							</AccordionTrigger>
-							<AccordionContent className="text-gray-600">
-								Yes. Its animated by default, but you can disable it if you
-								prefer.
-							</AccordionContent>
-						</AccordionItem>
-					</Accordion>
-				),
-				node: (
-					<NodeAccordion type="single" collapsible className="h-full">
-						<NodeAccordionItem value="item-1" className="h-full">
-							<NodeAccordionTrigger>Interactive Elements</NodeAccordionTrigger>
-							<NodeAccordionContent>
-								<div className="space-y-4 h-full flex flex-col justify-center">
-									<NodeButton className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-md hover:from-green-500 hover:to-blue-600 transition-all duration-300">
-										Gradient Button
-									</NodeButton>
-									<NodeCheckbox label="Check me!" className="text-indigo-600" />
-									<NodeInput
-										placeholder="Type something..."
-										className="border-2 border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-									/>
-								</div>
-							</NodeAccordionContent>
-						</NodeAccordionItem>
-					</NodeAccordion>
-				)
-			}
-		]
-	},
+    name: 'Accordion',
+    items: [
+      {
+        name: 'Accordion',
+        demo: (
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that matches the other components aesthetic.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. Its animated by default, but you can disable it if you prefer.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ),
+        node: (
+          <NodeAccordion type="single" collapsible className="w-full">
+            <NodeAccordionItem value="item-1">
+              <NodeAccordionTrigger>Is it accessible?</NodeAccordionTrigger>
+              <NodeAccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </NodeAccordionContent>
+            </NodeAccordionItem>
+            <NodeAccordionItem value="item-2">
+              <NodeAccordionTrigger>Is it styled?</NodeAccordionTrigger>
+              <NodeAccordionContent>
+                Yes. It comes with default styles that matches the other components aesthetic.
+              </NodeAccordionContent>
+            </NodeAccordionItem>
+            <NodeAccordionItem value="item-3">
+              <NodeAccordionTrigger>Is it animated?</NodeAccordionTrigger>
+              <NodeAccordionContent>
+                Yes. Its animated by default, but you can disable it if you prefer.
+              </NodeAccordionContent>
+            </NodeAccordionItem>
+          </NodeAccordion>
+        ),
+      },
+    ],
+  },
 	{
 		name: 'Avatar',
 		items: [
@@ -419,22 +414,29 @@ export const componentsMap: Components[] = [
 		]
 	},
 	{
-		name: 'Feedback',
-		items: [
-			{
-				name: 'Alert',
-				demo: (
-					<Alert>
-						<AlertTitle>Heads up!</AlertTitle>
-						<AlertDescription>
-							You can add components to your app using the shadcn/ui CLI.
-						</AlertDescription>
-					</Alert>
-				),
-				node: <NodeAlert className="" />
-			}
-		]
-	},
+    name: 'Alert',
+    items: [
+      {
+        name: 'Alert',
+        demo: (
+          <Alert>
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>
+              You can add components to your app using the shadcn/ui CLI.
+            </AlertDescription>
+          </Alert>
+        ),
+        node: (
+          <NodeAlert>
+            <NodeAlertTitle>Heads up!</NodeAlertTitle>
+            <NodeAlertDescription>
+              You can add components to your app using the shadcn/ui CLI.
+            </NodeAlertDescription>
+          </NodeAlert>
+        ),
+      },
+    ],
+  },
 	{
 		name: 'Layout',
 		items: [
@@ -454,7 +456,7 @@ export const componentsMap: Components[] = [
 		]
 	},
 	{
-		name: 'Data Display',
+		name: 'Badge',
 		items: [
 			{
 				name: 'Badge',
@@ -464,21 +466,20 @@ export const componentsMap: Components[] = [
 		]
 	},
 	{
-		name: 'Forms',
-		items: [
-			// ... (existing form components)
-			{
-				name: 'Checkbox',
-				demo: (
-					<div className="flex items-center space-x-2">
-						<Checkbox id="terms" />
-						{/* <Label htmlFor="terms">Accept terms and conditions</Label> */}
-					</div>
-				),
-				node: <NodeCheckbox />
-			}
-		]
-	},
+    name: 'Checkbox',
+    items: [
+      {
+        name: 'Checkbox',
+        demo: (
+          <div className="flex items-center space-x-2">
+            <Checkbox id="terms" />
+            <Label htmlFor="terms">Accept terms and conditions</Label>
+          </div>
+        ),
+        node: <NodeCheckbox label="Accept terms and conditions" />
+      }
+    ]
+  },
 	{
 		name: 'Disclosure',
 		items: [
@@ -592,7 +593,7 @@ export const componentsMap: Components[] = [
 		]
 	},
 	{
-		name: 'Forms',
+		name: 'Input',
 		items: [
 			// ... (existing form components)
 			{

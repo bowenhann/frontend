@@ -1,9 +1,11 @@
+
+// @/components/settings/avatar.tsx
 import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-export const AvatarSettings: React.FC = () => {
+export const AvatarSettings = () => {
   const { actions: { setProp }, props } = useNode((node) => ({
     props: node.data.props,
   }));
@@ -14,27 +16,24 @@ export const AvatarSettings: React.FC = () => {
         <Label htmlFor="src">Image Source</Label>
         <Input
           id="src"
-          value={props.src || ''}
-          onChange={(e) => setProp((props: any) => (props.src = e.target.value))}
-          placeholder="Enter image URL"
+          value={props.src}
+          onChange={(e) => setProp((props) => (props.src = e.target.value))}
         />
       </div>
       <div>
         <Label htmlFor="alt">Alt Text</Label>
         <Input
           id="alt"
-          value={props.alt || ''}
-          onChange={(e) => setProp((props: any) => (props.alt = e.target.value))}
-          placeholder="Enter alt text"
+          value={props.alt}
+          onChange={(e) => setProp((props) => (props.alt = e.target.value))}
         />
       </div>
       <div>
         <Label htmlFor="fallback">Fallback Text</Label>
         <Input
           id="fallback"
-          value={props.fallback || ''}
-          onChange={(e) => setProp((props: any) => (props.fallback = e.target.value))}
-          placeholder="Enter fallback text"
+          value={props.fallback}
+          onChange={(e) => setProp((props) => (props.fallback = e.target.value))}
         />
       </div>
     </div>
