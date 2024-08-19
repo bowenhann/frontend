@@ -1,5 +1,4 @@
-// @/components/settings/alert.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNode, useEditor } from '@craftjs/core';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,69 +10,80 @@ export const AlertSettings = () => {
     id: node.id,
   }));
 
-  const { query } = useEditor();
+  const { query, actions } = useEditor();
 
-  // 查找 AlertTitle 和 AlgeertDescription 子节点
-  const childNodes = query.node(id).get().data.nodes;
-  const titleNode = query.node(childNodes[0]).get();
-  console.log("what", titleNode);
-  // const titleNode = childNodes.title ? query.node(childNodes.title).get() : null;
-  // const descriptionNode = childNodes.description ? query.node(childNodes.description).get() : null;
+  const [titleText, setTitleText] = useState('');
+  const [descriptionText, setDescriptionText] = useState('');
 
-  // const updateChildText = (nodeId, text) => {
-  //   if (nodeId) {
-  //     query.node(nodeId).setProp((props) => (props.children = text));
-  //   }
-  // };
+  useEffect(() => {
+    const node = query.node(id).get();
+    const titleNodeId = node.data.nodes[0];
+    const descriptionNodeId = node.data.nodes[1];
 
-  return (<div>Hi</div>);
-  // return (
-  //   <div className="space-y-4">
-  //     <div>
-  //       <Label htmlFor="variant">Variant</Label>
-  //       <Select
-  //         onValueChange={(value) => setProp((props) => (props.variant = value))}
-  //         value={props.variant}
-  //       >
-  //         <SelectTrigger>
-  //           <SelectValue placeholder="Select variant" />
-  //         </SelectTrigger>
-  //         <SelectContent>
-  //           <SelectItem value="info">Info</SelectItem>
-  //           <SelectItem value="warning">Warning</SelectItem>
-  //           <SelectItem value="error">Error</SelectItem>
-  //           <SelectItem value="success">Success</SelectItem>
-  //         </SelectContent>
-  //       </Select>
-  //     </div>
-  //     <div>
-  //       <Label htmlFor="className">Class Name</Label>
-  //       <Input
-  //         id="className"
-  //         value={props.className}
-  //         onChange={(e) => setProp((props) => (props.className = e.target.value))}
-  //       />
-  //     </div>
-  //     {titleNode && (
-  //       <div>
-  //         <Label htmlFor="title">Alert Title</Label>
-  //         <Input
-  //           id="title"
-  //           value={titleNode.data.props.children}
-  //           onChange={(e) => updateChildText(childNodes.title, e.target.value)}
-  //         />
-  //       </div>
-  //     )}
-  //     {descriptionNode && (
-  //       <div>
-  //         <Label htmlFor="description">Alert Description</Label>
-  //         <Input
-  //           id="description"
-  //           value={descriptionNode.data.props.children}
-  //           onChange={(e) => updateChildText(childNodes.description, e.target.value)}
-  //         />
-  //       </div>
-  //     )}
-  //   </div>
-  // );
+    const titleNode = query.node(titleNodeId).get();
+    const descriptionNode = query.node(descriptionNodeId).get();
+
+    setTitleText(titleNode.data.props.children);
+    setDescriptionText(descriptionNode.data.props.children);
+  }, [id, query]);
+
+  const handleReplace = (nodeId, newText) => {
+    actions.setProp(nodeId, (props) => {
+      props.children = newText;
+    });
+  };
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label htmlFor="variant">Variant</Label>
+        <Select
+          onValueChange={(value) => setProp((props) => (props.variant = value))}
+          value={props.variant}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select variant" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default">Default</SelectItem>
+            <SelectItem value="destructive">Destructive</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div>
+        <Label htmlFor="className">Class Name</Label>
+        <Input
+          id="className"
+          value={props.className}
+          onChange={(e) => setProp((props) => (props.className = e.target.value))}
+        />
+      </div>
+      <div>
+        <Label htmlFor="title">Alert Title</Label>
+        <Input
+          id="title"
+          value={titleText}
+          onChange={(e) => {
+            setTitleText(e.target.value);
+            const node = query.node(id).get();
+            const titleNodeId = node.data.nodes[0];
+            handleReplace(titleNodeId, e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <Label htmlFor="description">Alert Description</Label>
+        <Input
+          id="description"
+          value={descriptionText}
+          onChange={(e) => {
+            setDescriptionText(e.target.value);
+            const node = query.node(id).get();
+            const descriptionNodeId = node.data.nodes[1];
+            handleReplace(descriptionNodeId, e.target.value);
+          }}
+        />
+      </div>
+    </div>
+  );
 };
